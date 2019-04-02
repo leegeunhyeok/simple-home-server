@@ -1,3 +1,6 @@
 {
-  "port": 7777
+  "port": 7777,
+  "static": {
+    "path": "/public"
+  }
 }
