@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/leegeunhyeok/simple-home-server/issues"
   },
-  "homepage": "https://github.com/leegeunhyeok/simple-home-server#readme"
+  "homepage": "https://github.com/leegeunhyeok/simple-home-server#readme",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0"
+  }
 }
