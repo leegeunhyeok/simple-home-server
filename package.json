@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/leegeunhyeok/simple-home-server#readme",
   "dependencies": {
+    "config": "^3.0.1",
     "koa": "^2.7.0",
     "koa-router": "^7.4.0"
   }
