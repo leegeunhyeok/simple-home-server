@@ -6,11 +6,12 @@ const config = require('config')
 const app = new Koa()
 const router = new Router()
 
-app.use(serve(__dirname + config.get('static.path')))
+const PORT = config.get('port')
+const PATH = config.get('static.path')
 
-router.get('/', (ctx, _) => {
-  ctx.body = 'home'
-})
+app.use(serve(__dirname + PATH))
+
+router.get('/', () => {})
 
 router.all('*', (ctx, _) => {
   ctx.redirect('/')
@@ -19,6 +20,6 @@ router.all('*', (ctx, _) => {
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(config.get('port'), () => {
-  console.log('Server started')
+app.listen(PORT, () => {
+  console.log(`Server started at ${PORT} port`)
 })
