@@ -23,3 +23,7 @@ app.use(router.allowedMethods())
 app.listen(PORT, () => {
   console.log(`Server started at ${PORT} port`)
 })
+
+process.on('uncaughtException', err => {
+  console.error(`uncaughtException: ${err}`)
+})
