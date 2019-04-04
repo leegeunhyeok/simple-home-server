@@ -8,8 +8,12 @@ const router = new Router()
 
 app.use(serve(__dirname + config.get('static.path')))
 
-router.get('/', (ctx, next) => {
+router.get('/', (ctx, _) => {
   ctx.body = 'home'
+})
+
+router.get('*', (ctx, _) => {
+  ctx.redirect('/')
 })
 
 app.use(router.routes())
