@@ -12,7 +12,7 @@ router.get('/', (ctx, _) => {
   ctx.body = 'home'
 })
 
-router.get('*', (ctx, _) => {
+router.all('*', (ctx, _) => {
   ctx.redirect('/')
 })
 
