@@ -5,8 +5,8 @@
     "path": "/public",
     "index": "index.html"
   },
-  "database": "",
-  "user": "",
-  "password": "",
-  "host": ""
+  "database": "simple_home",
+  "user": "root",
+  "password": "1234",
+  "host": "localhost"
 }
