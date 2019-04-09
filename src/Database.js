@@ -7,7 +7,8 @@ const sequelize = new Sequelize(
   config.get('password'),
   {
     host: config.get('host'),
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false
   }
 )
 

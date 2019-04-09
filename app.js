@@ -17,19 +17,31 @@ const ROOT = config.get('root')
 const PATH = config.get('static.path')
 const PUBLIC_PATH = path.join(__dirname, PATH)
 const INDEX_PATH = path.join(PUBLIC_PATH, config.get('static.index'))
+const STATISTICS = config.get('statistics')
 
 app.proxy = config.get('proxy')
 app.use(mount(ROOT, serve(PUBLIC_PATH)))
 
-app.use(async ctx => {
-  try {
-    await User.connect(ctx.request.ip)
-  } catch (e) {
-    console.error(`Error: ${e}`)
-  }
+router.get(ROOT, ctx => {
   ctx.type = 'html'
   ctx.body = fs.createReadStream(INDEX_PATH)
 })
+
+router.post(STATISTICS, async ctx => {
+  const ip = ctx.request.ip
+  console.log(`${ip} Connected.`)
+  try {
+    await User.connect(ip)
+  } catch (e) {
+    console.error(`Error: ${e}`)
+  }
+  ctx.type = 'json'
+  ctx.body = null
+})
+
+app
+  .use(router.routes())
+  .use(router.allowedMethods())
 
 app.listen(PORT, async () => {
   await User.sync()
