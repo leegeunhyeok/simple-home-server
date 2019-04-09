@@ -21,9 +21,8 @@ const INDEX_PATH = path.join(PUBLIC_PATH, config.get('static.index'))
 app.use(mount(PROXY, serve(PUBLIC_PATH)))
 
 router.get(PROXY, async ctx => {
-  console.log(ctx.request.ip)
   try {
-    // await User.connect()
+    await User.connect(ctx.request.ip)
   } catch (e) {
     console.error(`Error: ${e}`)
   }

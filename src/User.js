@@ -13,7 +13,6 @@ const User = sequelize.define('User', {
   },
   firstConnect: {
     type: Sequelize.DATE,
-    default: new Date(),
     allowNull: false
   },
   lastConnect: {
@@ -22,12 +21,35 @@ const User = sequelize.define('User', {
   },
   connectCount: {
     type: Sequelize.INTEGER,
-    default: 1,
     allowNull: false
   }
 }, {
   timestamps: false,
   freezeTableName: true
 })
+
+User.connect = function (ip) {
+  return this.findOne({
+    where: { ip }
+  })
+  .then(user => {
+    let currentDate = new Date()
+    if (user) {
+      return this.update({
+        lastConnect: currentDate,
+        connectCount: Sequelize.literal('connectCount + 1')
+      }, {
+        where: { ip }
+      })
+    } else {
+      return this.create({
+        ip,
+        firstConnect: currentDate,
+        lastConnect: currentDate,
+        connectCount: 1
+      })
+    }
+  })
+}
 
 exports.model = User
