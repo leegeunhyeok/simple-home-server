@@ -13,13 +13,14 @@ const app = new Koa()
 const router = new Router()
 
 const PORT = config.get('port')
-const PROXY = config.get('proxyPath')
+const ROOT = config.get('root')
 const PATH = config.get('static.path')
 const PUBLIC_PATH = path.join(__dirname, PATH)
 const INDEX_PATH = path.join(PUBLIC_PATH, config.get('static.index'))
 
 app.proxy = config.get('proxy')
-app.use(mount(PROXY, serve(PUBLIC_PATH)))
+app.use(mount(ROOT, serve(PUBLIC_PATH)))
+
 app.use(async ctx => {
   try {
     await User.connect(ctx.request.ip)
