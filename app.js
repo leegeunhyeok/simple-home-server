@@ -13,15 +13,14 @@ const app = new Koa()
 const router = new Router()
 
 const PORT = config.get('port')
-const ROOT = config.get('root')
+const PROXY = config.get('proxyPath')
 const PATH = config.get('static.path')
 const PUBLIC_PATH = path.join(__dirname, PATH)
 const INDEX_PATH = path.join(PUBLIC_PATH, config.get('static.index'))
 
 app.proxy = config.get('proxy')
-app.use(mount(ROOT, serve(PUBLIC_PATH)))
-
-router.get(ROOT, async ctx => {
+app.use(mount(PROXY, serve(PUBLIC_PATH)))
+app.use(async ctx => {
   try {
     await User.connect(ctx.request.ip)
   } catch (e) {
@@ -30,13 +29,6 @@ router.get(ROOT, async ctx => {
   ctx.type = 'html'
   ctx.body = fs.createReadStream(INDEX_PATH)
 })
-
-router.all('*', ctx => {
-  ctx.redirect(ROOT)
-})
-
-app.use(router.routes())
-app.use(router.allowedMethods())
 
 app.listen(PORT, async () => {
   await User.sync()
