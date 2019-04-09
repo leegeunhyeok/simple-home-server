@@ -20,10 +20,11 @@
   },
   "homepage": "https://github.com/leegeunhyeok/simple-home-server#readme",
   "dependencies": {
-    "config": "^3.0.1",
+    "config": "^3.1.0",
     "koa": "^2.7.0",
     "koa-mount": "^4.0.0",
     "koa-router": "^7.4.0",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "sequelize": "^5.2.13"
   }
 }

@@ -4,5 +4,9 @@
   "static": {
     "path": "/public",
     "index": "index.html"
-  }
+  },
+  "database": "",
+  "user": "",
+  "password": "",
+  "host": ""
 }
