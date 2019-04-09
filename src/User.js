@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const sequelize = require('./Database')
+const sequelize = require('./Database').sequelize
 
 const User = sequelize.define('User', {
   id: {
@@ -27,4 +27,4 @@ const User = sequelize.define('User', {
   }
 })
 
-export default User
+exports.model = User
