@@ -25,6 +25,9 @@ const User = sequelize.define('User', {
     default: 1,
     allowNull: false
   }
+}, {
+  timestamps: false,
+  freezeTableName: true
 })
 
 exports.model = User
