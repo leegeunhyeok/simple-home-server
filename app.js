@@ -13,11 +13,12 @@ const app = new Koa()
 const router = new Router()
 
 const PORT = config.get('port')
-const PROXY = config.get('proxy')
+const PROXY = config.get('proxyPath')
 const PATH = config.get('static.path')
 const PUBLIC_PATH = path.join(__dirname, PATH)
 const INDEX_PATH = path.join(PUBLIC_PATH, config.get('static.index'))
 
+app.proxy = config.get('proxy')
 app.use(mount(PROXY, serve(PUBLIC_PATH)))
 
 router.get(PROXY, async ctx => {

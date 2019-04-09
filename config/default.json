@@ -1,6 +1,7 @@
 {
   "port": 7777,
-  "proxy": "/",
+  "proxy": true,
+  "proxyPath": "/",
   "static": {
     "path": "/public",
     "index": "index.html"
