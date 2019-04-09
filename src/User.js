@@ -33,7 +33,7 @@ User.connect = function (ip) {
     where: { ip }
   })
   .then(user => {
-    let currentDate = new Date()
+    let currentDate = new Date().toLocaleString()
     if (user) {
       return this.update({
         lastConnect: currentDate,
